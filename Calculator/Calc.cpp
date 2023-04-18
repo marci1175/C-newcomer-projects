@@ -9,13 +9,13 @@ bool resti = true;
 std::string fasz;
 void inv() {
     system("CLS");
-    std::cout << "\nThis number is bigger than the 32bit integer, therefor i wont calculate that!\n";
+    std::cout << "\nThis number is bigger than the 32bit integer, therefor i wont calculate that!\nExiting in 10 seconds\n";
     Sleep(10);
     resti = false;
 }
 int main()
 {
-    while(resti = true){
+    while(resti == true){
         std::cout << "Welcome to Marci's calculator\n1) +\n2) -\n3) :\n4) *\n";
         std::cin >> dontes;
         if (dontes > "4") {
@@ -68,10 +68,11 @@ int main()
 
         std::cout << "\nWould you like to restart?(y/n)\n";
         std::cin >> rest;
-        if (rest == "Y" or "y") {
+        if (rest == "Y" or rest == "y") {
+            system("CLS");
             continue;
         }
-        else if (rest == "N" or "n") {
+        else if (rest == "N" or rest == "n") {
             resti = false;
         }
         else
