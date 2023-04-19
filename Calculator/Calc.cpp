@@ -18,14 +18,6 @@ int main()
     while(resti == true){
         std::cout << "Welcome to Marci's calculator\n1) +\n2) -\n3) :\n4) *\n";
         std::cin >> dontes;
-        if (dontes > "4") {
-            while (true) {
-                std::cout << "I hope you die in your sleep\n";
-            }
-
-
-        }
-
         std::cout << "User's decision : \n" << dontes;
         std::cout << "\nEnter the first number!\n";
         std::cin >> dontes1;
@@ -62,6 +54,11 @@ int main()
             else
                 answ = dontes1 * dontes2;
         }
+        else
+            while (true) {
+                std::cout << "I hope you die in your sleep\n";
+            }
+
         std::cout << "Answer : " << answ;
 
         std::string rest;
