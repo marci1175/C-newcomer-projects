@@ -10,7 +10,7 @@ std::string fasz;
 void inv() {
     system("CLS");
     std::cout << "\nThis number is bigger than the 32bit integer, therefor i wont calculate that!\nExiting in 10 seconds\n";
-    Sleep(10);
+    Sleep(10000);
     resti = false;
 }
 int main()
