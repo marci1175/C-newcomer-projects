@@ -7,7 +7,6 @@ int dontes2;
 int answ;
 bool resti = true;
 std::string fasz;
-template<> class std::numeric_limits<int>;
 void inv() {
     std::cout << "\nThis number is bigger than the 32bit integer, therefor i wont calculate that!\nExiting in 10 seconds\n";
     Sleep(10000);
@@ -34,7 +33,7 @@ int main()
         std::cout << "\nEnter the second number!\n";
         std::cin >> dontes2;
         }
-        catch (std::runtime_error& e) {
+        catch (std::runtime_error& dontes1) {
             std::cout << "you have entered an invalid number/character, restarting in 10 seconds";
                 inv();
         }
