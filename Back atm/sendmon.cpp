@@ -94,7 +94,6 @@ int sendmon(std::string dontes, std::string lname, std::string currmoney, std::s
 				veg = curr_veg + val;
 				std::string veg_string = std::to_string(veg);
 				lines[1] = veg_string;
-				std::cout << "Deposit complete";
 				file.flush();
 				file.close();
 				//CLOSEPREVFILE---------------
@@ -128,9 +127,51 @@ int sendmon(std::string dontes, std::string lname, std::string currmoney, std::s
 
 			}
 			else {
-				std::cout << "Failed to open";
+				std::cout << "User not found, reverting changes. . .\n";
 				std::cout << "Returning in 3 seconds. . .";
-				Sleep(3000);
+				std::fstream file(lname, std::ios::in | std::ios::out);  // open file in read and write mode
+				std::string line;
+				if (file.is_open()) {
+					std::vector <std::string> lines;
+					while (std::getline(file, line)) {
+						lines.push_back(line);
+					}
+					std::string curr;
+					int veg;
+
+					curr = lines[1];
+
+					int curr_veg = std::stoi(curr);
+
+					veg = curr_veg + val;
+					std::string veg_string = std::to_string(veg);
+					lines[1] = veg_string;
+					file.close();
+					file.flush();
+
+					//REOPEN
+
+					std::fstream file(lname, std::ios::in | std::ios::out);  // open file in read and write mode
+					std::string line;
+					file.seekp(0); // set the file pointer to the beginning of the file
+					for (const auto& line : lines) {
+						file << line << std::endl;
+					}
+					if (file.fail() || file.bad()) {
+						// print out error message if any errors occur
+						perror("Error occurred while writing to file : ");
+						Sleep(3000);
+						login(lname, lyo);
+					}
+					else {
+						// flush the file stream and close the file
+						file.flush();
+						file.close();
+						Sleep(3000);
+
+						login(lname, lyo);
+					}				
+				}
 			}
 
 
@@ -144,6 +185,7 @@ int sendmon(std::string dontes, std::string lname, std::string currmoney, std::s
 		perror("An error occured while opening the file :");
 		std::cout << "Returning in 3 seconds. . .";
 		Sleep(3000);
+		login(lname, lyo);
 	}
 	return 0;
 }
